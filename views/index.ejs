@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Pipeline Dashboard</title>
+
+<link rel="stylesheet" href="/style.css">
+
+<style>
+body{
+font-family:Arial;
+padding:20px;
+background:#f4f4f4;
+}
+
+.pipeline{
+display:grid;
+grid-template-columns:repeat(6,1fr);
+gap:15px;
+margin-top:20px;
+}
+
+.column{
+background:white;
+padding:10px;
+border-radius:6px;
+box-shadow:0 2px 6px rgba(0,0,0,0.1);
+}
+
+.card{
+padding:10px;
+margin-bottom:10px;
+border-radius:6px;
+color:white;
+}
+
+.column:nth-child(1) .card{background:#c0392b;}
+.column:nth-child(2) .card{background:#7fb069;}
+.column:nth-child(3) .card{background:#7d5ba6;}
+.column:nth-child(4) .card{background:#3fa7d6;}
+.column:nth-child(5) .card{background:#f08a4b;}
+.column:nth-child(6) .card{background:#a93226;}
+
+button{
+margin-top:5px;
+padding:5px 10px;
+border:none;
+cursor:pointer;
+}
+</style>
+
+</head>
+
+<body>
+
+<h1>Deployment Pipeline</h1>
+
+<form action="/create" method="POST">
+
+<input name="name" placeholder="Project name" required>
+
+<button>Create</button>
+
+</form>
+
+<div class="pipeline">
+
+<% stages.forEach(stage => { %>
+
+<div class="column">
+
+<h2><%= stage %></h2>
+
+<% items.filter(i => i.stage === stage).forEach(item => { %>
+
+<div class="card">
+
+<p><strong><%= item.name %></strong></p>
+
+<p><%= new Date(item.createdAt).toLocaleString() %></p>
+
+<form action="/move/<%= item.id %>" method="POST">
+
+<button>Move →</button>
+
+</form>
+
+</div>
+
+<% }) %>
+
+</div>
+
+<% }) %>
+
+</div>
+
+</body>
+</html>
