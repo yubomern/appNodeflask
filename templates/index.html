@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+</head>
+
+<body class="bg-gray-100 p-10">
+
+<h1 class="text-3xl mb-5 font-bold">
+Stock Pipeline
+</h1>
+
+<div class="bg-white p-5 rounded shadow">
+
+<input id="name"
+class="border p-2"
+placeholder="Product">
+
+<input id="quantity"
+class="border p-2"
+placeholder="Quantity">
+
+<select id="pipeline" class="border p-2">
+
+<option>DEV</option>
+<option>INT</option>
+<option>UAT</option>
+<option>QUALIF</option>
+<option>PREPROD</option>
+<option>PROD</option>
+
+</select>
+
+<input type="file" id="file">
+
+<button
+onclick="createStock()"
+class="bg-blue-500 text-white px-4 py-2 rounded">
+Add
+</button>
+
+</div>
+
+<table class="mt-5 w-full bg-white">
+
+<thead class="bg-gray-200">
+
+<tr>
+<th>ID</th>
+<th>Name</th>
+<th>Qty</th>
+<th>Pipeline</th>
+<th>File</th>
+<th>Action</th>
+</tr>
+
+</thead>
+
+<tbody id="table"></tbody>
+
+</table>
+
+<script src="/static/app.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Stock Manager</title>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+
+</head>
+
+<body>
+
+<h2>Stock Manager</h2>
+
+<div id="notif" style="color:green"></div>
+
+<form id="stockForm" enctype="multipart/form-data">
+
+<input type="text" name="name" placeholder="Name" required>
+
+<input type="number" name="quantity" placeholder="Quantity" required>
+
+<input type="text" name="pipeline" placeholder="Pipeline">
+
+<input type="file" name="file">
+
+<button type="submit">Add</button>
+
+</form>
+
+<hr>
+
+<h3>Stocks</h3>
+
+<ul id="stockList"></ul>
+
+<script src="/static/app.js"></script>
+
+</body>
+</html>

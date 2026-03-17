@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Flask CRUD + Chat</title>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+
+<script src="https://cdn.socket.io/4.0.1/socket.io.min.js"></script>
+
+</head>
+
+<body>
+
+<h2>Stock Management</h2>
+
+<input id="name" placeholder="Name">
+<input id="qty" placeholder="Quantity">
+<input id="price" placeholder="Price">
+
+<button onclick="addProduct()">Add</button>
+
+<h3>Products</h3>
+
+<table border="1">
+
+<thead>
+
+<tr>
+<th>ID</th>
+<th>Name</th>
+<th>Qty</th>
+<th>Price</th>
+<th>Action</th>
+</tr>
+
+</thead>
+
+<tbody id="productTable"></tbody>
+
+</table>
+
+<hr>
+
+<h2>Chat</h2>
+
+<input id="chatInput">
+
+<button onclick="sendMessage()">Send</button>
+
+<ul id="messages"></ul>
+
+<script src="/static/script.js"></script>
+
+</body>
+</html>

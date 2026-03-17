@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Stock Manager</title>
+
+<link rel="stylesheet" href="/static/style.css">
+
+</head>
+
+<body>
+
+<h1>Stock Manager</h1>
+
+<form id="stockForm">
+
+<input type="text" name="name" placeholder="Product Name" required>
+
+<input type="number" name="quantity" placeholder="Quantity" required>
+
+<select name="pipeline">
+
+<option value="warehouse">Warehouse</option>
+<option value="production">Production</option>
+<option value="delivery">Delivery</option>
+
+</select>
+
+<input type="file" name="file" required>
+
+<button type="submit">Add Stock</button>
+
+</form>
+
+<hr>
+
+<h2>Stock List</h2>
+
+<table border="1">
+
+<thead>
+<tr>
+<th>Name</th>
+<th>Quantity</th>
+<th>Pipeline</th>
+<th>File</th>
+<th>Delete</th>
+</tr>
+</thead>
+
+<tbody id="stockTable"></tbody>
+
+</table>
+
+<script>
+
+async function loadStocks(){
+
+let res = await fetch("/stocks")
+
+let data = await res.json()
+
+let table = document.getElementById("stockTable")
+
+table.innerHTML = ""
+
+data.forEach(s => {
+
+table.innerHTML += `
+<tr>
+<td>${s.name}</td>
+<td>${s.quantity}</td>
+<td>${s.pipeline}</td>
+<td><a href="/uploads/${s.file}" target="_blank">file</a></td>
+<td><button onclick="deleteStock(${s.id})">Delete</button></td>
+</tr>
+`
+})
+
+}
+
+async function deleteStock(id){
+
+await fetch("/stocks/"+id,{method:"DELETE"})
+
+loadStocks()
+
+}
+
+document.getElementById("stockForm").onsubmit = async function(e){
+
+e.preventDefault()
+
+let form = new FormData(this)
+
+await fetch("/stocks",{
+
+method:"POST",
+body:form
+
+})
+
+loadStocks()
+
+}
+
+loadStocks()
+
+</script>
+
+</body>
+</html>
