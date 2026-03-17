@@ -1,5 +1,5 @@
 const fs = require("fs")
-const { v4: uuid } = require("uuid")
+const { randomUUID } = require("crypto")
 
 const FILE = "./data.json"
 
@@ -25,7 +25,7 @@ function createPipeline(name){
 const data = readData()
 
 const item = {
-id: uuid(),
+id: randomUUID(),
 name,
 stage:"DEV",
 createdAt:new Date().toISOString()
